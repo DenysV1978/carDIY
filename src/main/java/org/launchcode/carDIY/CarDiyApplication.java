@@ -10,5 +10,6 @@ public class CarDiyApplication {
 		SpringApplication.run(CarDiyApplication.class, args);
 
 		System.out.println("Hello Denys");
+	}
 
 }
