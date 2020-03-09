@@ -15,7 +15,7 @@ public abstract class AbstractEntity {
     //setters and getters
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
     //equals and hashcode

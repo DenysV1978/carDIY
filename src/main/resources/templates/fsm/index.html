@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+    <header th:replace="fragments::header"></header>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Cars available in database</th>
+        </tr>
+        </thead>
+        <tr th:each="carInDB : ${carSInDB}">
+            <td><a th:href="'/fsm/detail?carInDBID='+${carInDB.id}" th:text="${carInDB.getNameOfCarInDB()}"></a></td>
+        </tr>
+    </table>
+
+    <a href="/fsm/addNewCar/add" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new car</a>
+
+
+</body>
+</html>

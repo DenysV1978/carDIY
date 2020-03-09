@@ -12,7 +12,7 @@ public class ManufacturersFSM extends AbstractEntity {
     //this class includes different Factory Service Manuals for different cars
 
     @ManyToOne
-    private CarInDB carInDB; //this will let us know which carInDB this manual belongs to
+    private CarInDB carInDB;
 
     @ManyToOne
     private FSMname fsmName;

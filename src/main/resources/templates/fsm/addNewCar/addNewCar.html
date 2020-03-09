@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+    <form method="post">
+        <div class="form-group">
+            <label>Name of the car
+                <input th:field="${newCarInDB.nameOfCarInDB}" class="form-control">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Name of manufacturer
+                <input th:field="${newCarInDB.nameOfManufacturer}" class="form-control">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Year manufacturing
+                <input th:field="${newCarInDB.yearOfManufacturing}" class="form-control">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Model of car
+                <input th:field="${newCarInDB.modelOfCar}" class="form-control">
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-success">
+        </div>
+    </form>
+
+
+</body>
+</html>
