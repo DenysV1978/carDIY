@@ -40,21 +40,32 @@ public class FsmController {
 
     @GetMapping("listOfManuals")
     public String showListOfManuals(@RequestParam Integer carInDBID, Model model) {
+//this is the first way to do it. Using simple Java coding manipulations
+//        Iterable<ManufacturersFSM> listOfManufacturersFSM = manufacturersFSMRepository.findAll();
+////        ArrayList<ManufacturersFSM> listOfManuals = new ArrayList<>();
+////
+////        for(ManufacturersFSM t : listOfManufacturersFSM) {
+////            if(t.getCarInDB().getId() == carInDBID) {
+////                listOfManuals.add(t);
+////            }
+////        }
 
-        Iterable<ManufacturersFSM> listOfManufacturersFSM = manufacturersFSMRepository.findAll();
-        ArrayList<ManufacturersFSM> listOfManuals = new ArrayList<>();
-
-        for(ManufacturersFSM t : listOfManufacturersFSM) {
-            if(t.getCarInDB().getId() == carInDBID) {
-                listOfManuals.add(t);
-            }
-        }
+        //this is the second way to do it - using query method implemented in ManufacturersFSMRepository
+        ArrayList<ManufacturersFSM> listOfManuals = manufacturersFSMRepository.findAllbyCarInDBID(carInDBID);
         model.addAttribute("listOfManuals", listOfManuals);
         model.addAttribute("title", "List Of Factory Service Manuals available for this car");
 
         return "fsm/listOfManuals/listOfManuals";
 
 
+    }
+
+    @GetMapping("listOfManuals/manual")
+    public String showChosenManual(@RequestParam int manualID, Model model) {
+        model.addAttribute("title", "Factory Service Manual");
+        Optional<ManufacturersFSM> manual = manufacturersFSMRepository.findById(manualID);
+        model.addAttribute("manual", manual);
+        return "fsm/listOfManuals/manual";
     }
 
 

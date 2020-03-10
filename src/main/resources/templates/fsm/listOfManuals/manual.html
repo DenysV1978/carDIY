@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<table class="table table-striped">
+    <tr>
+        <th>Name of service</th>
+        <td th:text="${manual.get().getFsmName().getFsmName()}"></td>
+    </tr>
+    <tr>
+        <th>Miles to repeat service</th>
+        <td th:text="${manual.get().millageToRepeat}"></td>
+    </tr>
+    <tr>
+        <th>Details</th>
+        <td th:text="${manual.get().details}"></td>
+    </tr>
+    <th>Parts:</th>
+    <tr th:each="part : ${manual.get().getPartsFSMList()}">
+        <td><a th:href="'/fsm/listOfManuals/manual?partID='+${part.id}" th:text="${part.partName}"></a></td>
+    </tr>
+</table>
+
+<a href="/fsm/listOfManuals/addNewManual" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new manual</a>
+
+
+</body>
+</html>

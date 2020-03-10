@@ -12,12 +12,11 @@
     </tr>
     </thead>
     <tr th:each="manual : ${listOfManuals}">
-        <td><a th:href="'/fsm/listOfManuals/manual?manualID='+${manual.id}" th:text="${manual.details}"></a></td>
+        <td><a th:href="'/fsm/listOfManuals/manual?manualID='+${manual.id}" th:text="${manual.getFsmName().getFsmName()}"></a></td>
     </tr>
 </table>
 
 <a href="/fsm/listOfManuals/addNewManual" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new manual</a>
 
-
 </body>
-</html></html>
+</html>

@@ -48,7 +48,7 @@ public class ManufacturersFSM extends AbstractEntity {
         this.carInDB = carInDB;
     }
 
-    public FSMname getFsmName() {
+    public FSMname getFsmName()  {
         return fsmName;
     }
 
