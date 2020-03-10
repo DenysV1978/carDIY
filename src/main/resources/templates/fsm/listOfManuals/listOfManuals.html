@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th th:text="${title}"></th>
+    </tr>
+    </thead>
+    <tr th:each="manual : ${listOfManuals}">
+        <td><a th:href="'/fsm/listOfManuals/manual?manualID='+${manual.id}" th:text="${manual.details}"></a></td>
+    </tr>
+</table>
+
+<a href="/fsm/listOfManuals/addNewManual" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new manual</a>
+
+
+</body>
+</html></html>

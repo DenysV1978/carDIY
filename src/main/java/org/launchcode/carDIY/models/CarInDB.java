@@ -27,10 +27,11 @@ public class CarInDB extends AbstractEntity {
     public CarInDB() {}
 
     public CarInDB(String nameOfCarInDB, String nameOfManufacturer, int yearOfManufacturing, String modelOfCar) {
-                this.nameOfCarInDB = nameOfCarInDB;
+
                 this.nameOfManufacturer = nameOfManufacturer;
                 this.yearOfManufacturing = yearOfManufacturing;
                 this.modelOfCar = modelOfCar;
+                this.nameOfCarInDB = nameOfCarInDB;
 
         }
 
@@ -42,7 +43,7 @@ public class CarInDB extends AbstractEntity {
         }
 
         public void setNameOfCarInDB(String aNameOfCarInDB) {
-                this.nameOfCarInDB = aNameOfCarInDB;
+                this.nameOfCarInDB = aNameOfCarInDB;;
         }
 
         public String getNameOfManufacturer() {

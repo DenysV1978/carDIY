@@ -11,7 +11,7 @@
         </tr>
         </thead>
         <tr th:each="carInDB : ${carSInDB}">
-            <td><a th:href="'/fsm/detail?carInDBID='+${carInDB.id}" th:text="${carInDB.getNameOfCarInDB()}"></a></td>
+            <td><a th:href="'/fsm/listOfManuals?carInDBID='+${carInDB.id}" th:text="${carInDB.getNameOfCarInDB()}"></a></td>
         </tr>
     </table>
 

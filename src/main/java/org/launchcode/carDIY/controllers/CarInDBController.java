@@ -33,6 +33,7 @@ public class CarInDBController {
         model.addAttribute("title", "Factory Service Manuals");
         carInDBRepository.save(newCarInDB);
         model.addAttribute("carSInDB", carInDBRepository.findAll());
+        System.out.println("Stop");
         return "fsm/index";
     }
     //TODO: implement Edit, Delete for CarInDB
