@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+    <form method="post">
+
+        <div class="form-group">
+            <label>Name of FSM
+                <select th:field="${newManufacturersFSM.fsmName}">
+                    <option th:each="fsmName : ${listOfFSMNames}"
+                            th:value="${fsmName.id}"
+                            th:text="${fsmName.fsmName}"
+                    ></option>
+                </select>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>Millage to repeat
+                <input th:field="${newManufacturersFSM.millageToRepeat}" class="form-control">
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>Details
+                <input th:field="${newManufacturersFSM.details}" class="form-control">
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>CarInDB
+                <input type="hidden" th:field="${newManufacturersFSM.carInDB}" th:value="${carInDBID}" class="form-control">
+            </label>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Add new manual" class="btn btn-success">
+<!--            <input type="hidden" th:value="${carInDBID}" th:field="${newManufacturersFSM.carInDB.id}">-->
+        </div>
+
+    </form>
+
+
+</body>
+</html>

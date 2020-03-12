@@ -2,15 +2,14 @@ package org.launchcode.carDIY.controllers;
 
 import org.hibernate.SQLQuery;
 import org.launchcode.carDIY.data.CarInDBRepository;
+import org.launchcode.carDIY.data.FSMnameRepository;
 import org.launchcode.carDIY.data.ManufacturersFSMRepository;
+import org.launchcode.carDIY.models.FSMname;
 import org.launchcode.carDIY.models.ManufacturersFSM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -26,6 +25,10 @@ public class FsmController {
 
     @Autowired
     private ManufacturersFSMRepository manufacturersFSMRepository;
+
+    @Autowired
+    private FSMnameRepository fsmNameRepository;
+
 
     @GetMapping()
     public String chooseFSMbranch(Model model) {
@@ -54,6 +57,7 @@ public class FsmController {
         ArrayList<ManufacturersFSM> listOfManuals = manufacturersFSMRepository.findAllbyCarInDBID(carInDBID);
         model.addAttribute("listOfManuals", listOfManuals);
         model.addAttribute("title", "List Of Factory Service Manuals available for this car");
+        model.addAttribute("carInDBID", carInDBID);
 
         return "fsm/listOfManuals/listOfManuals";
 
@@ -65,7 +69,37 @@ public class FsmController {
         model.addAttribute("title", "Factory Service Manual");
         Optional<ManufacturersFSM> manual = manufacturersFSMRepository.findById(manualID);
         model.addAttribute("manual", manual);
+        System.out.println("Stop");
         return "fsm/listOfManuals/manual";
+    }
+
+    @GetMapping("listOfManuals/addNewManual")
+    public String addNewManualName(@RequestParam int carInDBID, Model model) {
+
+        model.addAttribute("Title", "Add new Factory Standard Manual");
+
+        //list of FSM names available
+        Iterable<FSMname> listOfFSMNames = fsmNameRepository.findAll();
+        model.addAttribute("listOfFSMNames", listOfFSMNames);
+
+        //need it for model binding
+        model.addAttribute("newManufacturersFSM", new ManufacturersFSM());
+
+        model.addAttribute("carInDBID", carInDBID);
+
+        System.out.println("Stop");
+
+        return "fsm/listOfManuals/add";
+
+    }
+
+    @PostMapping("listOfManuals/addNewManual")
+    public String processAddNewManualName(@ModelAttribute ManufacturersFSM newManufacturersFSM, Model model) {
+
+        manufacturersFSMRepository.save(newManufacturersFSM);
+
+        return "index";
+
     }
 
 

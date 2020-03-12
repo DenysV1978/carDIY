@@ -2,6 +2,7 @@ package org.launchcode.carDIY.models;
 
 import com.sun.xml.bind.v2.TODO;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class CarInDB extends AbstractEntity {
     private String modelOfCar;
 
     @OneToMany(mappedBy = "carInDB")
+
     private List<ManufacturersFSM> manufacturersFSM = new ArrayList<>();
     //TODO: make sure to include check if the same FSMname is not repeated multiple times. One car - one FSMname - one FSM
 

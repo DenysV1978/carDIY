@@ -37,6 +37,8 @@ public class ManufacturersFSM extends AbstractEntity {
         this.details = details;
     };
 
+
+
     //setters and getters
 
 
@@ -75,4 +77,6 @@ public class ManufacturersFSM extends AbstractEntity {
     public List<PartsFSM> getPartsFSMList() {
         return partsFSMList;
     }
+
+
 }
