@@ -83,11 +83,12 @@ public class FsmController {
         model.addAttribute("listOfFSMNames", listOfFSMNames);
 
         //need it for model binding
+
         model.addAttribute("newManufacturersFSM", new ManufacturersFSM());
 
         model.addAttribute("carInDBID", carInDBID);
 
-        System.out.println("Stop");
+        //System.out.println("Stop");
 
         return "fsm/listOfManuals/add";
 
@@ -96,7 +97,12 @@ public class FsmController {
     @PostMapping("listOfManuals/addNewManual")
     public String processAddNewManualName(@ModelAttribute ManufacturersFSM newManufacturersFSM, Model model) {
 
+
+        //List<ManufacturersFSM> result = carInDBRepository.findById(carInDBID).get().getManufacturersFSM();
         manufacturersFSMRepository.save(newManufacturersFSM);
+        //List<ManufacturersFSM> result = manufacturersFSMRepository.findAllbyCarInDBID(carInDBID);
+        //System.out.println("Stop");
+
 
         return "index";
 
