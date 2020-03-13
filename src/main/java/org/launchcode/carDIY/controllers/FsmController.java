@@ -4,8 +4,11 @@ import org.hibernate.SQLQuery;
 import org.launchcode.carDIY.data.CarInDBRepository;
 import org.launchcode.carDIY.data.FSMnameRepository;
 import org.launchcode.carDIY.data.ManufacturersFSMRepository;
+import org.launchcode.carDIY.data.PartsFSMRepository;
 import org.launchcode.carDIY.models.FSMname;
 import org.launchcode.carDIY.models.ManufacturersFSM;
+import org.launchcode.carDIY.models.PartsFSM;
+import org.launchcode.carDIY.models.dto.ManufacturersFSMPartsFSMDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +31,9 @@ public class FsmController {
 
     @Autowired
     private FSMnameRepository fsmNameRepository;
+
+    @Autowired
+    private PartsFSMRepository partsFSMRepository;
 
 
     @GetMapping()
@@ -105,6 +111,40 @@ public class FsmController {
 
 
         return "index";
+
+    }
+
+    @GetMapping("listOfManuals/manual/addPart")
+    public String addPartToManual(@RequestParam int manualID, Model model) {
+
+        model.addAttribute("title", "Adding of part to the FSM manual");
+        model.addAttribute("partsFSMList", partsFSMRepository.findAll());
+
+        Optional<ManufacturersFSM> result = manufacturersFSMRepository.findById(manualID);
+        ManufacturersFSM manufacturersFSM = result.get();
+        ManufacturersFSMPartsFSMDTO manufacturersFSMPartsFSM = new ManufacturersFSMPartsFSMDTO();
+        manufacturersFSMPartsFSM.setManufacturersFSM(manufacturersFSM);
+        model.addAttribute("manufacturersFSMPartsFSM", manufacturersFSMPartsFSM);
+        //so, here we prepare empty DTO object and fill it with that part that is known now because we fill parts for this part
+        System.out.println("Stop");
+
+        return "fsm/listOfManuals/addPart";
+    }
+
+
+    @PostMapping("listOfManuals/manual/addPart")
+    public String processAddPartToManual(@ModelAttribute ManufacturersFSMPartsFSMDTO manufacturersFSMPartsFSM, Model model) {
+        System.out.println("stop");
+
+        ManufacturersFSM manufacturersFSM = manufacturersFSMPartsFSM.getManufacturersFSM();
+        PartsFSM partsFSM = manufacturersFSMPartsFSM.getPartsFSM();
+        manufacturersFSM.getPartsFSMList().add(partsFSM);
+        manufacturersFSMRepository.save(manufacturersFSM);
+
+        return "index";
+        //TODO: maybe you want to write check loop to see if this part is already in this manual... or maybe not - maybe you want to allow having two "engine oils" as an option
+
+
 
     }
 

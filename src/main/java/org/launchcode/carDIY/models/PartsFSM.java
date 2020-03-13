@@ -1,7 +1,10 @@
 package org.launchcode.carDIY.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class PartsFSM extends AbstractEntity {
@@ -12,18 +15,18 @@ public class PartsFSM extends AbstractEntity {
 
     private int cost;
 
-    @ManyToOne
-    private ManufacturersFSM manufacturersFSM;
+    @ManyToMany(mappedBy = "partsFSMList")
+    private final List<ManufacturersFSM> manufacturersFSMList = new ArrayList<>();
 
     //constructor
 
     public PartsFSM() {}
 
-    public PartsFSM(String partName, int cost, String partBrandName, ManufacturersFSM manufacturersFSM) {
+    public PartsFSM(String partName, int cost, String partBrandName) {
         this.partName = partName;
         this.cost = cost;
         this.partBrandName = partBrandName;
-        this.manufacturersFSM = manufacturersFSM;
+
 
     }
 
@@ -53,11 +56,7 @@ public class PartsFSM extends AbstractEntity {
         return cost;
     }
 
-    public ManufacturersFSM getManufacturersFSM() {
-        return manufacturersFSM;
-    }
-
-    public void setManufacturersFSM(ManufacturersFSM manufacturersFSM) {
-        this.manufacturersFSM = manufacturersFSM;
+    public List<ManufacturersFSM> getManufacturersFSMList() {
+        return manufacturersFSMList;
     }
 }

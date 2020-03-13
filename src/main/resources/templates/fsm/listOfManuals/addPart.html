@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+
+    <div class="form-group">
+        <input type="hidden" th:field="${manufacturersFSMPartsFSM.manufacturersFSM}">
+            <select th:field="${manufacturersFSMPartsFSM.partsFSM}">
+                <option th:each="part : ${partsFSMList}"
+                        th:value="${part.id}"
+                        th:text="${part.partName}"
+                ></option>
+            </select>
+
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" value="Add new part" class="btn btn-success">
+
+    </div>
+
+</form>
+
+
+</body>
