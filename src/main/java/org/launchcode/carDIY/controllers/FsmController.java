@@ -148,6 +148,17 @@ public class FsmController {
 
     }
 
+    @GetMapping("listOfManuals/manual/part")
+    public String showPartDetails(@RequestParam int partID, Model model) {
+
+        PartsFSM part = partsFSMRepository.findById(partID).get();
+        model.addAttribute("part", part);
+        model.addAttribute("title", "Part:" + part.getPartName());
+
+        return "fsm/listOfManuals/part";
+
+    }
+
 
 
 

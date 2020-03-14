@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<table class="table table-striped">
+    <tr>
+        <th>Part name</th>
+        <td th:text="${part.getPartName()}"></td>
+    </tr>
+    <tr>
+        <th>Part brand name</th>
+        <td th:text="${part.getPartBrandName()}"></td>
+    </tr>
+    <tr>
+        <th>Cost</th>
+        <td th:text="${part.cost}"></td>
+    </tr>
+    <th>List of FSMs where this part is used:</th>
+    <tr th:each="manual : ${part.manufacturersFSMList}">
+        <td th:text="${manual.fsmName}"></td>
+    </tr>
+    <th>List of cars where this part is used:</th>
+    <tr th:each="manual : ${part.manufacturersFSMList}">
+        <td th:text="${manual.carInDB.nameOfCarInDB}"></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
