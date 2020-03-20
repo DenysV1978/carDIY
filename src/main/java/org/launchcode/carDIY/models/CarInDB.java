@@ -19,8 +19,8 @@ public class CarInDB extends AbstractEntity {
 
     private String modelOfCar;
 
-    @OneToMany(mappedBy = "carInDB")
-
+    @OneToMany(mappedBy = "carInDB", cascade = {CascadeType.ALL })
+    //this cascade guy helps to get rid of all lines where we have this foreign key
     private List<ManufacturersFSM> manufacturersFSM = new ArrayList<>();
     //TODO: make sure to include check if the same FSMname is not repeated multiple times. One car - one FSMname - one FSM
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post" >
+<table class="table table-striped">
+    <tr>
+        <th>Name of the car</th>
+        <td th:text="${carInDB.nameOfCarInDB}"></td>
+    </tr>
+    <tr>
+        <th>Name of manufacturer</th>
+        <td th:text="${carInDB.nameOfManufacturer}"></td>
+    </tr>
+    <tr>
+        <th>Year of manufacturing</th>
+        <td th:text="${carInDB.yearOfManufacturing}"></td>
+    </tr>
+    <tr>
+        <th>Model of the car</th>
+        <td th:text="${carInDB.modelOfCar}"></td>
+    </tr>
+
+</table>
+    <div class="form-group">
+        <input type="hidden" th:value="${carInDB.id}" name="idCar">
+        <input type="submit" value="Confirm that you want to delete this car" class="btn btn-success">
+    </div>
+</form>
+
+
+
+
+</body>
+</html>

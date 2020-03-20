@@ -5,6 +5,30 @@
 
 <header th:replace="fragments :: header"></header>
 
+<table class ="table table-striped">
+
+        <tr>
+            <th>Name of the car in DB</th>
+            <td th:text="${car.nameOfCarInDB}"></td>
+        </tr>
+        <tr>
+            <th>Name of manufacturer</th>
+            <td th:text="${car.nameOfManufacturer}"></td>
+        </tr>
+        <tr>
+            <th>Year of manufacturing</th>
+            <td th:text="${car.yearOfManufacturing}"></td>
+        </tr>
+        <tr>
+            <th>Model of the car</th>
+            <td th:text="${car.modelOfCar}"></td>
+        </tr>
+
+</table>
+
+<a th:href="@{/fsm/carInDB/editCar/{idCar}(idCar=${car.id})}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Edit car</a>
+<a th:href="@{/fsm/carInDB/deleteCar/{idCar}(idCar=${car.id})}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Delete car</a>
+
 <table class="table table-striped">
     <thead>
     <tr>

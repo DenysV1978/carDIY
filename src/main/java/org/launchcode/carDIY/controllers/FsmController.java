@@ -5,6 +5,7 @@ import org.launchcode.carDIY.data.CarInDBRepository;
 import org.launchcode.carDIY.data.FSMnameRepository;
 import org.launchcode.carDIY.data.ManufacturersFSMRepository;
 import org.launchcode.carDIY.data.PartsFSMRepository;
+import org.launchcode.carDIY.models.CarInDB;
 import org.launchcode.carDIY.models.FSMname;
 import org.launchcode.carDIY.models.ManufacturersFSM;
 import org.launchcode.carDIY.models.PartsFSM;
@@ -61,6 +62,8 @@ public class FsmController {
 
         //this is the second way to do it - using query method implemented in ManufacturersFSMRepository
         ArrayList<ManufacturersFSM> listOfManuals = manufacturersFSMRepository.findAllbyCarInDBID(carInDBID);
+        CarInDB car = carInDBRepository.findById(carInDBID).get();
+        model.addAttribute("car", car);
         model.addAttribute("listOfManuals", listOfManuals);
         model.addAttribute("title", "List Of Factory Service Manuals available for this car");
         model.addAttribute("carInDBID", carInDBID);
@@ -159,6 +162,15 @@ public class FsmController {
 
     }
 
+    @GetMapping("editCar")
+    public String preEditProcess(Model model) {
+
+        model.addAttribute("cars", carInDBRepository.findAll());
+        model.addAttribute("title", "Edit cars");
+
+        return "fsm/editCar";
+
+    }
 
 
 
