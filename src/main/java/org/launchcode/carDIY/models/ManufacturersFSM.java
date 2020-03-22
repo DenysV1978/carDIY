@@ -15,7 +15,7 @@ public class ManufacturersFSM extends AbstractEntity {
     private FSMname fsmName;
     // TODO: need to check if you need to use OneToOne
 
-    private String millageToRepeat;
+    private int millageToRepeat;
 
     private String details;
 
@@ -27,7 +27,7 @@ public class ManufacturersFSM extends AbstractEntity {
 
     };
 
-    public ManufacturersFSM(CarInDB carInDB, FSMname fsmName, String millageToRepeat, String details) {
+    public ManufacturersFSM(CarInDB carInDB, FSMname fsmName, Integer millageToRepeat, String details) {
         this.carInDB = carInDB;
         this.fsmName = fsmName;
         this.millageToRepeat = millageToRepeat;
@@ -55,11 +55,11 @@ public class ManufacturersFSM extends AbstractEntity {
         this.fsmName = fsmName;
     }
 
-    public String getMillageToRepeat() {
+    public Integer getMillageToRepeat() {
         return millageToRepeat;
     }
 
-    public void setMillageToRepeat(String millageToRepeat) {
+    public void setMillageToRepeat(int millageToRepeat) {
         this.millageToRepeat = millageToRepeat;
     }
 

@@ -78,6 +78,7 @@ public class FsmController {
         model.addAttribute("title", "Factory Service Manual");
         Optional<ManufacturersFSM> manual = manufacturersFSMRepository.findById(manualID);
         model.addAttribute("manual", manual);
+        model.addAttribute("manualID", manualID);
         System.out.println("Stop");
         return "fsm/listOfManuals/manual";
     }
@@ -90,13 +91,9 @@ public class FsmController {
         //list of FSM names available
         Iterable<FSMname> listOfFSMNames = fsmNameRepository.findAll();
         model.addAttribute("listOfFSMNames", listOfFSMNames);
-
         //need it for model binding
-
         model.addAttribute("newManufacturersFSM", new ManufacturersFSM());
-
         model.addAttribute("carInDBID", carInDBID);
-
         //System.out.println("Stop");
 
         return "fsm/listOfManuals/add";
@@ -104,17 +101,18 @@ public class FsmController {
     }
 
     @PostMapping("listOfManuals/addNewManual")
-    public String processAddNewManualName(@ModelAttribute ManufacturersFSM newManufacturersFSM, Model model) {
+    public String processAddNewManualName(@ModelAttribute ManufacturersFSM newManufacturersFSM, @RequestParam int carInDBID, Model model) {
 
-
-        //List<ManufacturersFSM> result = carInDBRepository.findById(carInDBID).get().getManufacturersFSM();
         manufacturersFSMRepository.save(newManufacturersFSM);
-        //List<ManufacturersFSM> result = manufacturersFSMRepository.findAllbyCarInDBID(carInDBID);
-        //System.out.println("Stop");
 
+        ArrayList<ManufacturersFSM> listOfManuals = manufacturersFSMRepository.findAllbyCarInDBID(carInDBID);
+        CarInDB car = carInDBRepository.findById(carInDBID).get();
+        model.addAttribute("car", car);
+        model.addAttribute("listOfManuals", listOfManuals);
+        model.addAttribute("title", "List Of Factory Service Manuals available for this car");
+        model.addAttribute("carInDBID", carInDBID);
 
-        return "index";
-
+        return "fsm/listOfManuals/listOfManuals";
     }
 
     @GetMapping("listOfManuals/manual/addPart")
@@ -131,12 +129,14 @@ public class FsmController {
         //so, here we prepare empty DTO object and fill it with that part that is known now because we fill parts for this part
         System.out.println("Stop");
 
+        model.addAttribute("manualID", manualID);
+
         return "fsm/listOfManuals/addPart";
     }
 
 
     @PostMapping("listOfManuals/manual/addPart")
-    public String processAddPartToManual(@ModelAttribute ManufacturersFSMPartsFSMDTO manufacturersFSMPartsFSM, Model model) {
+    public String processAddPartToManual(@ModelAttribute ManufacturersFSMPartsFSMDTO manufacturersFSMPartsFSM, @RequestParam int manualID, Model model) {
         System.out.println("stop");
 
         ManufacturersFSM manufacturersFSM = manufacturersFSMPartsFSM.getManufacturersFSM();
@@ -144,7 +144,11 @@ public class FsmController {
         manufacturersFSM.getPartsFSMList().add(partsFSM);
         manufacturersFSMRepository.save(manufacturersFSM);
 
-        return "index";
+        model.addAttribute("title", "Factory Service Manual");
+        Optional<ManufacturersFSM> manual = manufacturersFSMRepository.findById(manualID);
+        model.addAttribute("manual", manual);
+        System.out.println("Stop");
+        return "fsm/listOfManuals/manual";
         //TODO: maybe you want to write check loop to see if this part is already in this manual... or maybe not - maybe you want to allow having two "engine oils" as an option
 
 
@@ -162,15 +166,71 @@ public class FsmController {
 
     }
 
-    @GetMapping("editCar")
-    public String preEditProcess(Model model) {
+    @GetMapping("listOfManuals/editManual")
+    public String editManualForm(@RequestParam int manualID, Model model) {
 
-        model.addAttribute("cars", carInDBRepository.findAll());
-        model.addAttribute("title", "Edit cars");
+        model.addAttribute("title", "Edit manual");
+        model.addAttribute("manual", manufacturersFSMRepository.findById(manualID).get());
+        model.addAttribute("listOfFSMNames", fsmNameRepository.findAll());
 
-        return "fsm/editCar";
+
+        return "fsm/listOfManuals/editManual";
+    }
+
+    @PostMapping("listOfManuals/editManual")
+    public String processEditManualForm(@RequestParam int manualID, int fsmName, int millageToRepeat, String details, Model model) {
+
+        FSMname name = fsmNameRepository.findById(fsmName).get();
+        ManufacturersFSM manualChanged = manufacturersFSMRepository.findById(manualID).get();
+        manualChanged.setFsmName(name);
+        manualChanged.setDetails(details);
+        manualChanged.setMillageToRepeat(millageToRepeat);
+        manufacturersFSMRepository.save(manualChanged);
+
+        model.addAttribute("title", "Factory Service Manual");
+        Optional<ManufacturersFSM> manual = manufacturersFSMRepository.findById(manualID);
+        model.addAttribute("manual", manual);
+        model.addAttribute("manualID", manualID);
+        System.out.println("Stop");
+
+
+        return "fsm/listOfManuals/manual";
 
     }
+
+    @GetMapping("listOfManuals/deleteManual")
+    public String deleteManualFrom(@RequestParam int manualID, Model model) {
+
+        model.addAttribute("title", "Delete manual");
+        model.addAttribute("manual", manufacturersFSMRepository.findById(manualID));
+        model.addAttribute("manualID", manualID);
+
+        return "fsm/listOfManuals/deleteManual";
+
+    }
+
+    @PostMapping("listOfManuals/deleteManual")
+    public String processDeleteManualForm(@RequestParam int manualID, Model model) {
+
+        int carInDBID = manufacturersFSMRepository.findById(manualID).get().getCarInDB().getId();
+
+        manufacturersFSMRepository.deleteById(manualID);
+
+        ArrayList<ManufacturersFSM> listOfManuals = manufacturersFSMRepository.findAllbyCarInDBID(carInDBID);
+        CarInDB car = carInDBRepository.findById(carInDBID).get();
+        model.addAttribute("car", car);
+        model.addAttribute("listOfManuals", listOfManuals);
+        model.addAttribute("title", "List Of Factory Service Manuals available for this car");
+        model.addAttribute("carInDBID", carInDBID);
+
+        return "fsm/listOfManuals/listOfManuals";
+
+
+
+
+    }
+
+
 
 
 
