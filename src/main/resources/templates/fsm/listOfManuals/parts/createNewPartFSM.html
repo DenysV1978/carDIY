@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+
+    <div class="form-group">
+        <label>Name of the part
+            <input th:field="${newPartFSM.partName}" class="form-control">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>Brand name of the part
+            <input th:field="${newPartFSM.partBrandName}" class="form-control">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>Cost of the part
+            <input th:field="${newPartFSM.cost}" class="form-control">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Add new part" class="btn btn-success">
+        <input type="hidden" th:value="${manualID}" name="manualID">
+    </div>
+
+</form>
+
+
+</body>
+</html>

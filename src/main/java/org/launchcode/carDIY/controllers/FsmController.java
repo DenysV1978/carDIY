@@ -127,7 +127,7 @@ public class FsmController {
         manufacturersFSMPartsFSM.setManufacturersFSM(manufacturersFSM);
         model.addAttribute("manufacturersFSMPartsFSM", manufacturersFSMPartsFSM);
         //so, here we prepare empty DTO object and fill it with that part that is known now because we fill parts for this part
-        System.out.println("Stop");
+        // System.out.println("Stop");
 
         model.addAttribute("manualID", manualID);
 

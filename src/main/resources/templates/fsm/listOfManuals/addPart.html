@@ -21,11 +21,13 @@
 
     <div class="form-group">
         <input type="hidden" th:value="${manualID}" name="manualID">
-        <input type="submit" value="Add new part" class="btn btn-success">
+        <input type="submit" value="Add part from the list" class="btn btn-success">
 
     </div>
 
 </form>
+
+<a th:href="'/fsm/listOfManuals/manual/createPart?manualID='+${manualID}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Create new part</a>
 
 
 </body>
