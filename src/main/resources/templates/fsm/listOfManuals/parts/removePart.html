@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+    <th:block th:each="part:${partsList}">
+        <div class="form-group">
+            <label>
+                <span th:text="${part.partName}"></span>
+                <input type="checkbox" name="partID" th:value="${part.id}" class="form-control">
+            </label>
+        </div>
+    </th:block>
+
+    <input type="hidden" name="manualID" th:value="${manual.id}">
+    <input type="submit" value="Remove selected parts from this manual" class="btn btn-danger">
+</form>
+
+
+
+</body>
+</html>
