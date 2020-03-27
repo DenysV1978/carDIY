@@ -147,6 +147,7 @@ public class FsmController {
         model.addAttribute("title", "Factory Service Manual");
         Optional<ManufacturersFSM> manual = manufacturersFSMRepository.findById(manualID);
         model.addAttribute("manual", manual);
+        model.addAttribute("manualID", manualID);
 
         return "fsm/listOfManuals/manual";
         //TODO: maybe you want to write check loop to see if this part is already in this manual... or maybe not - maybe you want to allow having two "engine oils" as an option
@@ -156,11 +157,12 @@ public class FsmController {
     }
 
     @GetMapping("listOfManuals/manual/part")
-    public String showPartDetails(@RequestParam int partID, Model model) {
+    public String showPartDetails(@RequestParam int partID, int manualID, Model model) {
 
         PartsFSM part = partsFSMRepository.findById(partID).get();
         model.addAttribute("part", part);
         model.addAttribute("title", "Part:" + part.getPartName());
+        model.addAttribute("manualID", manualID);
 
         return "fsm/listOfManuals/part";
 

@@ -18,6 +18,8 @@
             </label>
         </div>
 
+        <a th:href="'/fsm/addFSMName?carInDBID='+${carInDBID}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new FSMname in the system</a>
+
         <div class="form-group">
             <label>Millage to repeat
                 <input th:field="${newManufacturersFSM.millageToRepeat}" class="form-control">
@@ -36,6 +38,9 @@
         </div>
 
     </form>
+
+<a th:href="'/fsm/listOfManuals/?carInDBID='+${carInDBID}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cancel new manual creation</a>
+
 
 
 </body>

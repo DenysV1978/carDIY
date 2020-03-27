@@ -24,12 +24,14 @@
 
     <th>Parts:</th>
     <tr th:each="part : ${manual.get().getPartsFSMList()}">
-        <td><a th:href="'/fsm/listOfManuals/manual/part?partID='+${part.id}" th:text="${part.partName}"></a></td>
+        <td><a th:href="'/fsm/listOfManuals/manual/part?partID='+${part.id}+'&manualID='+${manualID}" th:text="${part.partName}"></a></td>
     </tr>
 </table>
 
+
 <a th:href="'/fsm/listOfManuals/manual/addPart?manualID='+${manual.get().id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new part</a>
 <a th:href="'/fsm/listOfManuals/manual/removePart?manualID='+${manual.get().id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Remove part from manual</a>
+<a th:href="'/fsm/listOfManuals/?carInDBID='+${manual.get().getCarInDB().getId()}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return back to the list of manuals</a>
 
 
 </body>
