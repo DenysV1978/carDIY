@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+    <form method="post">
+
+            <table class="table table-striped">
+                 <tr>
+                    <th>Part name</th>
+                    <td th:text="${part.getPartName()}"></td>
+                </tr>
+                <tr>
+                    <th>Part brand name</th>
+                    <td th:text="${part.getPartBrandName()}"></td>
+                </tr>
+                <tr>
+                    <th>Cost</th>
+                    <td th:text="${part.cost}"></td>
+                </tr>
+
+            </table>
+        <input type="hidden" th:value="${part.getId()}" name="partID">
+        <input type="submit" value="Delete part from Database" class="btn btn-warning">
+    </form>
+
+
+<a th:href="'/fsm/listOfManuals/manual/part?partID='+${part.id}+'&manualID='+${manualID}" class="btn btn-success" role="button" aria-pressed="true">Cancel deletion</a>
+
+
+
+</body>
+</html>

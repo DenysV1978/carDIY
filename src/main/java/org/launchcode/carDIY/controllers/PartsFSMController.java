@@ -1,16 +1,18 @@
 package org.launchcode.carDIY.controllers;
 
+
 import org.launchcode.carDIY.data.ManufacturersFSMRepository;
 import org.launchcode.carDIY.data.PartsFSMRepository;
 import org.launchcode.carDIY.models.ManufacturersFSM;
 import org.launchcode.carDIY.models.PartsFSM;
-import org.launchcode.carDIY.models.dto.ManufacturersFSMPartsFSMDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +25,7 @@ public class PartsFSMController {
 
     @Autowired
     private ManufacturersFSMRepository manufacturersFSMrepository;
+
 
 
 
@@ -49,6 +52,7 @@ public class PartsFSMController {
         model.addAttribute("title", "Factory Service Manual");
         Optional<ManufacturersFSM> manual = manufacturersFSMrepository.findById(manualID);
         model.addAttribute("manual", manual);
+        model.addAttribute("manualID", manualID);
         System.out.println("Stop");
         return "fsm/listOfManuals/manual";
 
@@ -68,8 +72,6 @@ public class PartsFSMController {
     @PostMapping("removePart")
     public String processRemovePartForm(@RequestParam int manualID, String partID, Model model) {
         model.addAttribute("title", "Removing of parts from this manual: " + manufacturersFSMrepository.findById(manualID).get().getFsmName());
-        System.out.println("Stop");
-
 
         String[] listOfParts  = partID.split(",");
         List<PartsFSM> partsFSMList1 =  new ArrayList<>();
@@ -99,7 +101,41 @@ public class PartsFSMController {
         model.addAttribute("title", "Factory Service Manual");
         Optional<ManufacturersFSM> manual = manufacturersFSMrepository.findById(manualID);
         model.addAttribute("manual", manual);
-        System.out.println("Stop");
+
+        return "fsm/listOfManuals/manual";
+    }
+
+    @GetMapping("deleteFromDB/part")
+    public String deletePartFromDBform(@RequestParam int partID, int manualID, Model model) {
+
+        model.addAttribute("title", "Delete part from parts table in database");
+        model.addAttribute("part", partsFSMRepository.findById(partID).get());
+        model.addAttribute("manualID", manualID);
+
+        return "fsm/listOfManuals/parts/deletePartFromDB";
+    }
+
+    @PostMapping("deleteFromDB/part")
+    public String processDeletePartFromDBForm(@RequestParam int partID, int manualID, Model model) {
+
+        Iterable<ManufacturersFSM> listOfManuals = manufacturersFSMrepository.findAll();
+        for(ManufacturersFSM manual : listOfManuals) {
+            manual.getPartsFSMList().remove(partsFSMRepository.findById(partID).get());
+            manufacturersFSMrepository.save(manual);
+        }
+
+
+
+        partsFSMRepository.deleteById(partID);
+
+
+
+        model.addAttribute("title", "Factory Service Manual");
+        Optional<ManufacturersFSM> manual = manufacturersFSMrepository.findById(manualID);
+        model.addAttribute("manual", manual);
+        model.addAttribute("manualID", manualID);
+
+
         return "fsm/listOfManuals/manual";
     }
 
