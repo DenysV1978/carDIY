@@ -8,7 +8,7 @@
 <table class="table table-striped">
     <tr>
         <th>Part name</th>
-        <td th:text="${part.getPartName()}"></td>
+        <td><a th:href="'https://www.amazon.com/s?k='+${part.getPartName()}+'+'+${manual.getCarInDB().getNameOfCarInDB()}" th:text="${part.getPartName()}"></a></td>
     </tr>
     <tr>
         <th>Part brand name</th>

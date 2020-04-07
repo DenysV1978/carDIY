@@ -1,6 +1,7 @@
 package org.launchcode.carDIY.controllers;
 
 
+import com.sun.xml.bind.v2.TODO;
 import org.launchcode.carDIY.data.ManufacturersFSMRepository;
 import org.launchcode.carDIY.data.PartsFSMRepository;
 import org.launchcode.carDIY.models.ManufacturersFSM;
@@ -124,11 +125,7 @@ public class PartsFSMController {
             manufacturersFSMrepository.save(manual);
         }
 
-
-
         partsFSMRepository.deleteById(partID);
-
-
 
         model.addAttribute("title", "Factory Service Manual");
         Optional<ManufacturersFSM> manual = manufacturersFSMrepository.findById(manualID);
@@ -139,6 +136,7 @@ public class PartsFSMController {
         return "fsm/listOfManuals/manual";
     }
 
+//TODO: implement methods that will delete parts from PartsFSM... Think about that before deleting part from PartsFSM table, those parts should be deleted from join table...
 
 
 }

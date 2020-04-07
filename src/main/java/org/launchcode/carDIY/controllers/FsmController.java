@@ -163,6 +163,7 @@ public class FsmController {
         model.addAttribute("part", part);
         model.addAttribute("title", "Part:" + part.getPartName());
         model.addAttribute("manualID", manualID);
+        model.addAttribute("manual", manufacturersFSMRepository.findById(manualID).get());
 
         return "fsm/listOfManuals/part";
 
