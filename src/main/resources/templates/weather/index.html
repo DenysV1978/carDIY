@@ -1,10 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+<p></p>
+    <table class="table table-striped">
+        <tr>
+            <th>Name of location</th>
+            <td th:text="${locationName}"></td>
+        </tr>
+        <tr>
+            <th>Region</th>
+            <td th:text="${locationRegion}"></td>
+        </tr>
+        <tr>
+            <th>Current temperature</th>
+            <td th:text="${currentTempF}"></td>
+        </tr>
+        <tr>
+            <th>Conditions</th>
+            <td th:text="${conditionText}"></td>
+        </tr>
+    </table>
+<p></p>
+<p></p>
+
+<p>Weather forecast</p>
+<table class="table table-striped">
+    <tr>
+        <th>Date</th>
+        <th:block th:each="date : ${dates}">
+            <td th:text="${date}"></td>
+        </th:block>
+    </tr>
+
+    <tr>
+        <th>Average temperature</th>
+            <th:block th:each="temp : ${averageTemp}">
+                <td th:text="${temp}"></td>
+            </th:block>
+    </tr>
+    <tr>
+        <th>Conditions</th>
+        <th:block th:each="cond : ${conditionForecast}">
+            <td th:text="${cond}"></td>
+        </th:block>
+    </tr>
+
+</table>
+
+
+
+
 
 </body>
 </html>

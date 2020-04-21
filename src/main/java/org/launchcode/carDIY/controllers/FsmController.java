@@ -1,19 +1,21 @@
 package org.launchcode.carDIY.controllers;
 
+import com.amazonaws.services.s3.AmazonS3Client;
 import org.hibernate.SQLQuery;
-import org.launchcode.carDIY.data.CarInDBRepository;
-import org.launchcode.carDIY.data.FSMnameRepository;
-import org.launchcode.carDIY.data.ManufacturersFSMRepository;
-import org.launchcode.carDIY.data.PartsFSMRepository;
+import org.launchcode.carDIY.data.*;
 import org.launchcode.carDIY.models.CarInDB;
 import org.launchcode.carDIY.models.FSMname;
 import org.launchcode.carDIY.models.ManufacturersFSM;
 import org.launchcode.carDIY.models.PartsFSM;
 import org.launchcode.carDIY.models.dto.ManufacturersFSMPartsFSMDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,6 +29,8 @@ public class FsmController {
     @Autowired
     private CarInDBRepository carInDBRepository;
 
+
+
     @Autowired
     private ManufacturersFSMRepository manufacturersFSMRepository;
 
@@ -35,6 +39,10 @@ public class FsmController {
 
     @Autowired
     private PartsFSMRepository partsFSMRepository;
+
+    @Autowired
+    private ImageRepository imageRepository;
+
 
 
     @GetMapping()
@@ -68,6 +76,7 @@ public class FsmController {
         model.addAttribute("title", "List Of Factory Service Manuals available for this car");
         model.addAttribute("carInDBID", carInDBID);
 
+
         return "fsm/listOfManuals/listOfManuals";
 
 
@@ -79,7 +88,12 @@ public class FsmController {
         Optional<ManufacturersFSM> manual = manufacturersFSMRepository.findById(manualID);
         model.addAttribute("manual", manual);
         model.addAttribute("manualID", manualID);
+
+        model.addAttribute("images", manual.get().getImages());
         System.out.println("Stop");
+
+
+
         return "fsm/listOfManuals/manual";
     }
 
@@ -232,6 +246,8 @@ public class FsmController {
 
 
     }
+
+
 
 
 

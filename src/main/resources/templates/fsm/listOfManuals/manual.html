@@ -26,13 +26,49 @@
     <tr th:each="part : ${manual.get().getPartsFSMList()}">
         <td><a th:href="'/fsm/listOfManuals/manual/part?partID='+${part.id}+'&manualID='+${manualID}" th:text="${part.partName}"></a></td>
     </tr>
+    <th>Images:</th>
+    <tr th:each="image : ${images}">
+        <td><a th:href="'/fsm/listOfManuals/manual/image?imageID='+${image.id}+'&manualID='+${manualID}" th:text="'Name: '+${image.name}+'; '+ 'Description: '+${image.description}"></a></td>
+    </tr>
 </table>
+<hr>
+<hr>
+    <div>
+        <a th:href="'/fsm/listOfManuals/?carInDBID='+${manual.get().getCarInDB().getId()}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return back to the list of manuals</a>
+    </div>
+<hr>
 
+<b style="font-size:25px">Parts manipulation</b>
+<br>
+    <div>
+        <a th:href="'/fsm/listOfManuals/manual/addPart?manualID='+${manual.get().id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new part</a>
+        <a th:href="'/fsm/listOfManuals/manual/removePart?manualID='+${manual.get().id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Remove part from manual</a>
+    </div>
+<hr>
+<b style="font-size:25px">Images manipulation</b>
+<br>
+<div>
+    <a th:href="'/fsm/listOfManuals/manual/addImage?manualID='+${manual.get().id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new image</a>
 
-<a th:href="'/fsm/listOfManuals/manual/addPart?manualID='+${manual.get().id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new part</a>
-<a th:href="'/fsm/listOfManuals/manual/removePart?manualID='+${manual.get().id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Remove part from manual</a>
-<a th:href="'/fsm/listOfManuals/?carInDBID='+${manual.get().getCarInDB().getId()}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return back to the list of manuals</a>
+</div>
+<hr>
+    <b style="font-size:25px">Weather check</b>
+        <form method="post" action="/weather">
+            <div class="form-group">
+                <i style="font-size:20px">Quantity days forecast
+                    <input name="qtyDaysForecast"  class="form-control">
+                </i>
+            </div>
+            <div class="form-group">
+                <i style="font-size:20px">Zip Code
+                    <input name="zip" class="form-control">
+                </i>
+            </div>
 
+            <div class="form-group">
+                <b> <input type="submit" value="Check weather forecast" class="btn btn-success"></b>
+            </div>
+        </form>
 
 </body>
 </html>

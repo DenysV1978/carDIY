@@ -11,6 +11,9 @@ public class ManufacturersFSM extends AbstractEntity {
     @ManyToOne
     private CarInDB carInDB;
 
+    @OneToMany(mappedBy = "manufacturersFSM", cascade = {CascadeType.ALL })
+    private List<Image> images = new ArrayList<>();
+
     @ManyToOne
     private FSMname fsmName;
     // TODO: need to check if you need to use OneToOne
@@ -74,6 +77,12 @@ public class ManufacturersFSM extends AbstractEntity {
     public List<PartsFSM> getPartsFSMList() {
         return partsFSMList;
     }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+
 
 
 }

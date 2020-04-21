@@ -1,4 +1,7 @@
 package org.launchcode.carDIY.data;
 
-public interface ImageRepository {
+import org.launchcode.carDIY.models.Image;
+import org.springframework.data.repository.CrudRepository;
+
+public interface ImageRepository extends CrudRepository<Image, Integer> {
 }

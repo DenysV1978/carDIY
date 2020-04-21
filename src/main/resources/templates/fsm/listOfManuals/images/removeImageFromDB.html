@@ -1,10 +1,23 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<a th:href="'/fsm/listOfManuals/manual?manualID='+${manualID}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Go back to the manual</a>
+<br>
+<hr>
+<form method="post">
+
+    <input type="hidden" th:value="${imageID}" name="imageID">
+    <input type="hidden" th:value="${manualID}" name="manualID">
+    <input type="submit" value="Delete image from Database" class="btn btn-warning">
+</form>
+
+
+<img  th:src="'data:image/jpeg;base64,'+${image}"/>
+
+
+
 
 </body>
-</html>

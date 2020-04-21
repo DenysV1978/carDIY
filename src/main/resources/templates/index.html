@@ -3,7 +3,8 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<footer th:replace="fragments :: header"></footer>
+<footer th:fragment="header">
+    <h1 th:text="${title}"></h1>
 
 <a href="/fsm" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Factory Service Manuals</a>
 <a href="/history" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Work with own history</a>

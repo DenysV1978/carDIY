@@ -21,6 +21,13 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("history")
+    public String history(Model model) {
+        model.addAttribute("title", "History of you own maintenaces and fixes");
+
+        return "indexHistory";
+    }
+
 
 
 }
