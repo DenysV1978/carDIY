@@ -54,6 +54,7 @@ public class PartsFSMController {
         Optional<ManufacturersFSM> manual = manufacturersFSMrepository.findById(manualID);
         model.addAttribute("manual", manual);
         model.addAttribute("manualID", manualID);
+        model.addAttribute("images", manual.get().getImages());
         System.out.println("Stop");
         return "fsm/listOfManuals/manual";
 
@@ -102,6 +103,8 @@ public class PartsFSMController {
         model.addAttribute("title", "Factory Service Manual");
         Optional<ManufacturersFSM> manual = manufacturersFSMrepository.findById(manualID);
         model.addAttribute("manual", manual);
+        model.addAttribute("images", manual.get().getImages());
+        model.addAttribute("manualID", manualID);
 
         return "fsm/listOfManuals/manual";
     }
@@ -131,6 +134,7 @@ public class PartsFSMController {
         Optional<ManufacturersFSM> manual = manufacturersFSMrepository.findById(manualID);
         model.addAttribute("manual", manual);
         model.addAttribute("manualID", manualID);
+        model.addAttribute("images", manual.get().getImages());
 
 
         return "fsm/listOfManuals/manual";

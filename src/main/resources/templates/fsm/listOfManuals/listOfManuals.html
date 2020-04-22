@@ -8,31 +8,31 @@
 <table class ="table table-striped">
 
         <tr>
-            <th>Name of the car in DB</th>
+            <th style="color:black; font-size:20px; font-family:'Courier New'; ">Name of the car in DB</th>
             <td th:text="${car.nameOfCarInDB}"></td>
         </tr>
         <tr>
-            <th>Name of manufacturer</th>
+            <th style="color:black; font-size:20px; font-family:'Courier New'; ">Name of manufacturer</th>
             <td th:text="${car.nameOfManufacturer}"></td>
         </tr>
         <tr>
-            <th>Year of manufacturing</th>
+            <th style="color:black; font-size:20px; font-family:'Courier New'; ">Year of manufacturing</th>
             <td th:text="${car.yearOfManufacturing}"></td>
         </tr>
         <tr>
-            <th>Model of the car</th>
+            <th style="color:black; font-size:20px; font-family:'Courier New'; ">Model of the car</th>
             <td th:text="${car.modelOfCar}"></td>
         </tr>
 
 </table>
 
-<a th:href="@{/fsm/carInDB/editCar/{idCar}(idCar=${car.id})}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Edit car</a>
-<a th:href="@{/fsm/carInDB/deleteCar/{idCar}(idCar=${car.id})}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Delete car</a>
+<a th:href="@{/fsm/carInDB/editCar/{idCar}(idCar=${car.id})}" class="btn btn-secondary" role="button" aria-pressed="true">Edit car</a>
+<a th:href="@{/fsm/carInDB/deleteCar/{idCar}(idCar=${car.id})}" class="btn btn-secondary" role="button" aria-pressed="true">Delete car</a>
 
 <table class="table table-striped">
     <thead>
     <tr>
-        <th th:text="${title}"></th>
+        <th th:text="${title}" style="color:black; font-size:25px; font-family:'Courier New'; "></th>
     </tr>
     </thead>
     <tr th:each="manual : ${listOfManuals}">
@@ -40,7 +40,9 @@
     </tr>
 </table>
 
-<a th:href="'/fsm/listOfManuals/addNewManual?carInDBID='+${carInDBID}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new manual</a>
-<a href="/fsm" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return back</a>
+<a th:href="'/fsm/listOfManuals/addNewManual?carInDBID='+${carInDBID}" class="btn btn-secondary" role="button" aria-pressed="true">Add new manual</a>
+<a href="/fsm" class="btn btn-secondary" role="button" aria-pressed="true">Return back</a>
+<hr>
+<img src="/image/ebca03deeaac890a1baf4e34fbd90e4f.jpg" height="342" width="542">
 </body>
 </html>

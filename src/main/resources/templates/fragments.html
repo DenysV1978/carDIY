@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:fragment="head">
     <meta charset="UTF-8"/>
-    <title>Application for cars` DIYers</title>
+    <title>Do It Yourself : Fix or Maintain Your Cars!</title>
+
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -13,13 +14,14 @@
 <body>
 
 <footer th:fragment="header">
-    <h1 th:text="${title}"></h1>
-
+    <h1 th:text="${title}" style="color:gray; font-size:40px; font-family:'Courier New'; font-weight:bold" ></h1>
+<hr>
     <ul class="nav">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/fsm">Factory Service Manuals</a></li>
-        <li class="nav-item"><a class="nav-link" href="/history">Work with own history</a></li>
+        <li class="btn btn-outline-secondary"><a class="nav-link secondary" style="color:gray" href="/">Home</a></li>
+        <li class="btn btn-outline-secondary"><a class="nav-link secondary" style="color:gray" href="/fsm">Factory Service Manuals</a></li>
+        <li class="btn btn-outline-secondary"><a class="nav-link secondary" style="color:gray" href="/history">Work with own history</a></li>
     </ul>
+    <hr>
 </footer>
 
 <div th:fragment="dropdown" class="dropdown">

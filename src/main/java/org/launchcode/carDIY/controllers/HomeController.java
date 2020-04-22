@@ -17,13 +17,13 @@ public class HomeController {
 
     @GetMapping()
     public String index(Model model) {
-        model.addAttribute("title", "Application for cars` DIYers");
+        model.addAttribute("title", "Automobile DIYer Database");
         return "index";
     }
 
     @GetMapping("history")
     public String history(Model model) {
-        model.addAttribute("title", "History of you own maintenaces and fixes");
+        model.addAttribute("title", "History of you own maintenances and fixes");
 
         return "indexHistory";
     }

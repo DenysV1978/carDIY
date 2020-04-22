@@ -8,15 +8,15 @@
 
             <table class="table table-striped">
                  <tr>
-                    <th>Part name</th>
+                    <th style="color:black; font-size:20px; font-family:'Courier New'; ">Part name</th>
                     <td th:text="${part.getPartName()}"></td>
                 </tr>
                 <tr>
-                    <th>Part brand name</th>
+                    <th style="color:black; font-size:20px; font-family:'Courier New'; ">Part brand name</th>
                     <td th:text="${part.getPartBrandName()}"></td>
                 </tr>
                 <tr>
-                    <th>Cost</th>
+                    <th style="color:black; font-size:20px; font-family:'Courier New'; ">Cost</th>
                     <td th:text="${part.cost}"></td>
                 </tr>
 
@@ -26,7 +26,7 @@
     </form>
 
 
-<a th:href="'/fsm/listOfManuals/manual/part?partID='+${part.id}+'&manualID='+${manualID}" class="btn btn-success" role="button" aria-pressed="true">Cancel deletion</a>
+<a th:href="'/fsm/listOfManuals/manual/part?partID='+${part.id}+'&manualID='+${manualID}" class="btn btn-secondary" role="button" aria-pressed="true">Cancel deletion</a>
 
 
 

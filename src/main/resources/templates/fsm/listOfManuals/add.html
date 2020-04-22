@@ -18,7 +18,7 @@
             </label>
         </div>
 
-        <a th:href="'/fsm/addFSMName?carInDBID='+${carInDBID}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new FSMname in the system</a>
+        <a th:href="'/fsm/addFSMName?carInDBID='+${carInDBID}" class="btn btn-secondary" role="button" aria-pressed="true">Add new FSMname in the system</a>
 
         <div class="form-group">
             <label>Millage to repeat
@@ -33,13 +33,13 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" value="Add new manual" class="btn btn-success">
+            <input type="submit" value="Add new manual" class="btn btn-secondary">
             <input type="hidden" th:value="${carInDBID}" name="carInDB">
         </div>
 
     </form>
 
-<a th:href="'/fsm/listOfManuals/?carInDBID='+${carInDBID}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cancel new manual creation</a>
+<a th:href="'/fsm/listOfManuals/?carInDBID='+${carInDBID}" class="btn btn-secondary" role="button" aria-pressed="true">Cancel new manual creation</a>
 
 
 

@@ -7,7 +7,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Cars available in database</th>
+            <th style="color:black; font-size:25px; font-family:'Courier New'; ">Cars available in database</th>
         </tr>
         </thead>
         <tr th:each="carInDB : ${carSInDB}">
@@ -15,9 +15,12 @@
         </tr>
     </table>
 
-    <a href="/fsm/carInDB/addNewCar" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new car</a>
+    <a href="/fsm/carInDB/addNewCar" class="btn btn-secondary" role="button" aria-pressed="true">Add new car</a>
 
-
+    <br>
+    <hr>
+    <img src="/image/fsmIndex.jpg" height="342" width="542">
+    <br>
 
 </body>
 </html>

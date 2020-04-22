@@ -40,8 +40,6 @@ public class ImageController {
     public String addImageToManual(@RequestParam int manualID, Model model) {
 
 
-        //model.addAttribute("newImage", new Image());
-
         model.addAttribute("title", "Add new image to the manual "+ manufacturersFSMRepository.findById(manualID).get().getFsmName() + " for the car: " + manufacturersFSMRepository.findById(manualID).get().getCarInDB().getNameOfCarInDB() + ".");
         model.addAttribute("manualID", manualID);
 

@@ -4,8 +4,8 @@
 
 <header th:replace="fragments :: header"></header>
 
-<a th:href="'/fsm/listOfManuals/manual?manualID='+${manualID}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Go back to the manual</a>
-<a th:href="'/fsm/listOfManuals/manual/removeImage?manualID='+${manualID}+'&imageID='+${imageID}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Remove image from manual</a>
+<a th:href="'/fsm/listOfManuals/manual?manualID='+${manualID}" class="btn btn-secondary" role="button" aria-pressed="true">Go back to the manual</a>
+<a th:href="'/fsm/listOfManuals/manual/removeImage?manualID='+${manualID}+'&imageID='+${imageID}" class="btn btn-secondary" role="button" aria-pressed="true">Remove image from manual</a>
 
 <hr>
 <img  th:src="'data:image/jpeg;base64,'+${image}"/>

@@ -21,14 +21,15 @@
 
     <div class="form-group">
         <input type="hidden" th:value="${manualID}" name="manualID">
-        <input type="submit" value="Add part from the list" class="btn btn-success">
+        <input type="submit" value="Add part from the list" class="btn btn-secondary">
 
     </div>
 
 </form>
 
-<a th:href="'/fsm/listOfManuals/manual/createPart?manualID='+${manualID}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Create new part</a>
-<a th:href="'/fsm/listOfManuals/manual?manualID='+${manualID}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return back to the list of manuals</a>
+<a th:href="'/fsm/listOfManuals/manual/createPart?manualID='+${manualID}" class="btn btn-secondary" role="button" aria-pressed="true">Create new part</a>
+<a th:href="'/fsm/listOfManuals/manual?manualID='+${manualID}" class="btn btn-secondary" role="button" aria-pressed="true">Return back to the list of manuals</a>
 
-
+<hr>
+<img src="/image/susp.jpg" height="342" width="642">
 </body>

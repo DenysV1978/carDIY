@@ -21,7 +21,7 @@ public class WeatherController {
        @PostMapping()
     public String checkWeatherToday(@RequestParam int qtyDaysForecast, int zip, Model model) throws JsonProcessingException {
 
-        //
+
             // request url
             String url = "http://api.weatherapi.com/v1/forecast.json?key=1d8ed8e69b0a4617bf9140323200904&q={zip}&days={qtyDaysForecast}";
 

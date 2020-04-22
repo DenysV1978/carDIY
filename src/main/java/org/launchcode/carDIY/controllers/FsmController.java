@@ -45,6 +45,8 @@ public class FsmController {
 
 
 
+
+
     @GetMapping()
     public String chooseFSMbranch(Model model) {
         model.addAttribute("title", "Factory Service Manuals");
@@ -73,7 +75,7 @@ public class FsmController {
         CarInDB car = carInDBRepository.findById(carInDBID).get();
         model.addAttribute("car", car);
         model.addAttribute("listOfManuals", listOfManuals);
-        model.addAttribute("title", "List Of Factory Service Manuals available for this car");
+        model.addAttribute("title", "List Of Factory Service Manuals available for " + car.getNameOfCarInDB() + ".");
         model.addAttribute("carInDBID", carInDBID);
 
 
@@ -84,8 +86,9 @@ public class FsmController {
 
     @GetMapping("listOfManuals/manual")
     public String showChosenManual(@RequestParam int manualID, Model model) {
-        model.addAttribute("title", "Factory Service Manual");
+
         Optional<ManufacturersFSM> manual = manufacturersFSMRepository.findById(manualID);
+        model.addAttribute("title", "Factory Service Manual: " + manual.get().getFsmName() +"."+ manual.get().getCarInDB().getNameOfCarInDB() + ".");
         model.addAttribute("manual", manual);
         model.addAttribute("manualID", manualID);
 
@@ -132,7 +135,7 @@ public class FsmController {
     @GetMapping("listOfManuals/manual/addPart")
     public String addPartToManual(@RequestParam int manualID, Model model) {
 
-        model.addAttribute("title", "Adding of part to the FSM manual");
+        model.addAttribute("title", "Adding part to the" + manufacturersFSMRepository.findById(manualID).get().getFsmName() + "manual.");
         model.addAttribute("partsFSMList", partsFSMRepository.findAll());
 
         Optional<ManufacturersFSM> result = manufacturersFSMRepository.findById(manualID);
@@ -140,6 +143,7 @@ public class FsmController {
         ManufacturersFSMPartsFSMDTO manufacturersFSMPartsFSM = new ManufacturersFSMPartsFSMDTO();
         manufacturersFSMPartsFSM.setManufacturersFSM(manufacturersFSM);
         model.addAttribute("manufacturersFSMPartsFSM", manufacturersFSMPartsFSM);
+
         //so, here we prepare empty DTO object and fill it with that part that is known now because we fill parts for this part
         // System.out.println("Stop");
 
@@ -162,6 +166,7 @@ public class FsmController {
         Optional<ManufacturersFSM> manual = manufacturersFSMRepository.findById(manualID);
         model.addAttribute("manual", manual);
         model.addAttribute("manualID", manualID);
+        model.addAttribute("images", manual.get().getImages());
 
         return "fsm/listOfManuals/manual";
         //TODO: maybe you want to write check loop to see if this part is already in this manual... or maybe not - maybe you want to allow having two "engine oils" as an option
@@ -175,7 +180,7 @@ public class FsmController {
 
         PartsFSM part = partsFSMRepository.findById(partID).get();
         model.addAttribute("part", part);
-        model.addAttribute("title", "Part:" + part.getPartName());
+        model.addAttribute("title", "Part: " + part.getPartName());
         model.addAttribute("manualID", manualID);
         model.addAttribute("manual", manufacturersFSMRepository.findById(manualID).get());
 
@@ -208,6 +213,7 @@ public class FsmController {
         Optional<ManufacturersFSM> manual = manufacturersFSMRepository.findById(manualID);
         model.addAttribute("manual", manual);
         model.addAttribute("manualID", manualID);
+        model.addAttribute("images", manual.get().getImages());
 
 
 
